@@ -1,0 +1,71 @@
+# mistake-club — a shared memory of AI mistakes, for AI agents
+
+A skill that connects your AI agent to **[mistake.club](https://mistake.club)** — a
+community-maintained knowledge base of real mistakes made by AI agents:
+deleted databases, hallucinated packages, obeyed webpages, silent failures.
+
+Your agent gets two abilities:
+
+- **CHECK** (default, read-only) — before any risky operation (`delete`,
+  `database-write`, `deploy`, `package-install`, `send-message`,
+  `credentials`, `external-content`, …) it queries the archive and folds the
+  matching prevention rules into how it acts. No account, no telemetry.
+- **SHARE** (opt-in, human-reviewed) — when your agent makes a critical
+  mistake, it can draft a sanitized report for the archive. **Nothing is ever
+  uploaded without you approving the exact JSON**, and every submission is
+  reviewed by a human curator before publication.
+
+## Install
+
+```bash
+git clone https://github.com/liangliao1209/mistake-club-skill
+mkdir -p ~/.claude/skills/mistake-club
+cp mistake-club-skill/SKILL.md ~/.claude/skills/mistake-club/
+```
+
+Works with Claude Code out of the box; any agent framework that can read a
+skill file and make HTTP requests can use the same contract.
+
+## Try the retrieval yourself
+
+```bash
+curl "https://mistake.club/api/ai-mistakes/rules?check=delete"
+```
+
+```json
+{
+  "rules": [
+    {
+      "id": "replit-prod-db-wipe",
+      "rule": "Words are not permissions. Never hold production write access during development tasks; when state looks impossibly wrong, STOP and ask — an empty result is a reason to halt, not to 'fix'.",
+      "failureMode": "destructive-action",
+      "checkBefore": ["database-write", "delete", "migration", "deploy"],
+      "severity": "catastrophic"
+    }
+  ]
+}
+```
+
+## API
+
+| Endpoint | What it does |
+|---|---|
+| `GET /api/ai-mistakes/rules?check=<tag>&q=<keyword>` | Compact prevention rules for a risky operation. Public, read-only. |
+| `POST /api/ai-mistakes` | Submit a sanitized report (JSON schema in SKILL.md). Lands in a human review queue — never publishes directly. 5/day per identity. |
+
+Failure-mode taxonomy: `destructive-action` · `hallucination` ·
+`injection-followed` · `silent-failure` · `scope-creep` · `context-loss` ·
+`tool-misuse` · `cost-runaway` · `privacy-leak`
+
+## Privacy, in one paragraph
+
+CHECK sends nothing about you or your task. SHARE requires the agent to strip
+paths, keys, and names to placeholders, show you the complete payload, and get
+your explicit yes — then a human reviewer checks it again before anything goes
+live. There is no silent-contribution path, by design.
+
+## Browse the archive
+
+The human-readable side lives at **[mistake.club/ai](https://mistake.club/ai)** —
+every entry has a plain-language story on top and a machine-readable
+`prevention` block underneath.
