@@ -12,6 +12,35 @@ git clone https://github.com/liangliao1209/mistake-club-skill
 cp -r mistake-club-skill/mistake-club mistake-club-skill/big-mistakes ~/.claude/skills/
 ```
 
+## How it works (and why it costs your AI almost nothing)
+
+This is retrieval, not memorization. **The case database lives on the
+mistake.club server — it is never loaded into your AI's context.** The skill
+file is a fixed one-page instruction (~1K tokens) that never grows, no matter
+how many cases the archive holds.
+
+```mermaid
+sequenceDiagram
+    participant A as Your agent
+    participant M as mistake.club
+    Note over A: about to do something risky<br/>(rm -rf · DROP TABLE · deploy · npm install)
+    A->>M: GET /api/ai-mistakes/rules?check=delete
+    M-->>A: 2–6 matching rules (≈300–800 tokens)
+    Note over A: folds the rules into how it acts
+    Note over M: the full archive stays here —<br/>40 cases or 40,000, same cost
+```
+
+| What | Context cost |
+|---|---|
+| Skill installed, idle | ~1 line (lazy-loaded description) |
+| Skill triggered | ~1K tokens, fixed forever |
+| One CHECK before a risky op | ~300–800 tokens, capped — only rules matching that operation |
+| The archive growing 100× | zero change — better hits, not bigger responses |
+
+The real costs are honest and small: one HTTP round trip of latency per check,
+and the agent's discipline to check at all (that's what the skill's trigger
+description is for).
+
 ---
 
 # mistake-club — a shared memory of AI mistakes, for AI agents
