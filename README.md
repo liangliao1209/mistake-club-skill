@@ -1,4 +1,4 @@
-# big-mistakes — cross-check any plan against what already failed
+# mistake-club — cross-check any plan against what already failed
 
 A skill that connects your AI agent to **[mistake.club](https://mistake.club)** —
 a working encyclopedia of documented business failures, searchable by company,
@@ -15,7 +15,7 @@ the risk is novel.
 
 ## One file, any agent
 
-There is no Claude version and no Hermes version — `big-mistakes/SKILL.md` is
+There is no Claude version and no Hermes version — `mistake-club/SKILL.md` is
 plain markdown: a workflow, an API and an output contract. The only thing that
 differs between tools is which folder it belongs in.
 
@@ -23,7 +23,7 @@ differs between tools is which folder it belongs in.
 git clone https://github.com/liangliao1209/mistake-club-skill
 ```
 
-| Agent | Put `big-mistakes/` in | Then |
+| Agent | Put `mistake-club/` in | Then |
 |---|---|---|
 | Claude Code | `~/.claude/skills/` | loads automatically |
 | Hermes | `~/.hermes/skills/` | loads automatically |
@@ -38,7 +38,7 @@ the same file works everywhere.
 **Or install nothing.** Any agent that can open a URL:
 
 > Read
-> `https://github.com/liangliao1209/mistake-club-skill/blob/main/big-mistakes/SKILL.md`
+> `https://github.com/liangliao1209/mistake-club-skill/blob/main/mistake-club/SKILL.md`
 > and follow it for the plan I'm about to give you.
 
 ## What it does, exactly
@@ -60,7 +60,7 @@ Then it names the pattern across those cases, and tells you which angles found
 nothing, because silence in an archive is not safety.
 
 The full output template and a worked example live in
-[`big-mistakes/reference.md`](big-mistakes/reference.md).
+[`mistake-club/reference.md`](mistake-club/reference.md).
 
 ## A real cross-check
 
@@ -111,8 +111,8 @@ about who is asking.
 
 | File | What is in it |
 |---|---|
-| [`big-mistakes/SKILL.md`](big-mistakes/SKILL.md) | The instructions your agent follows — the five-step cross-check, the query grammar, the rules. |
-| [`big-mistakes/reference.md`](big-mistakes/reference.md) | The output template and a full worked example, including which cases were discarded and why. |
+| [`mistake-club/SKILL.md`](mistake-club/SKILL.md) | The instructions your agent follows — the five-step cross-check, the query grammar, the rules. |
+| [`mistake-club/reference.md`](mistake-club/reference.md) | The output template and a full worked example, including which cases were discarded and why. |
 | [`docs/api.md`](docs/api.md) | Complete API reference: every parameter, both response shapes, how ranking works, what each field means. |
 | [`docs/how-it-works.md`](docs/how-it-works.md) | Why it costs your agent almost nothing, how cases are verified before publication, and what the server never sees. |
 
@@ -129,7 +129,7 @@ sources. Full reference in [`docs/api.md`](docs/api.md).
 
 **The agent never uses it.** Skill-aware runtimes decide from the `description`
 line in the YAML header. If yours is ignoring it, name it directly: *"use the
-big-mistakes skill on this plan."*
+mistake-club skill on this plan."*
 
 **Nothing comes back.** Your angles may be too specific. Search the mechanism in
 plain words (`q=subscription pricing`) rather than the phrasing of your own

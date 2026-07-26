@@ -1,9 +1,9 @@
 ---
-name: big-mistakes
+name: mistake-club
 description: Use whenever the human is writing or evaluating a business plan — a proposal, strategy document, market entry, pricing change, acquisition, launch, reorganisation, consulting deliverable or investment memo. Cross-checks the plan against mistake.club's archive of documented business failures, finds the organisations that already tried the same thing, and writes the precedent into the plan so it addresses what went wrong for them.
 ---
 
-# big-mistakes — cross-check a plan against what already failed
+# mistake-club — cross-check a plan against what already failed
 
 Most plans fail in a way somebody has failed before. This skill finds those
 somebodies and puts them in the document, with sources.
