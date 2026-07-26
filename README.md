@@ -13,15 +13,33 @@ cost them and a link to the sources.
 A plan that names its precedent failure and answers it beats one that pretends
 the risk is novel.
 
-## Install (once)
+## One file, any agent
+
+There is no Claude version and no Hermes version — `big-mistakes/SKILL.md` is
+plain markdown: a workflow, an API and an output contract. The only thing that
+differs between tools is which folder it belongs in.
 
 ```bash
 git clone https://github.com/liangliao1209/mistake-club-skill
-cp -r mistake-club-skill/big-mistakes ~/.claude/skills/
 ```
 
-That is all for Claude Code. Any agent that reads skill files works the same
-way — point it at `big-mistakes/SKILL.md`.
+| Agent | Put `big-mistakes/` in | Then |
+|---|---|---|
+| Claude Code | `~/.claude/skills/` | loads automatically |
+| Hermes | `~/.hermes/skills/` | loads automatically |
+| Cursor · Windsurf | `./.cursor/rules/` | add as a project rule |
+| Codex · Copilot | reference it from `AGENTS.md` | picked up with the repo |
+| ChatGPT · Gemini · anything else | — | paste the file, or link it |
+
+The YAML block at the top of `SKILL.md` is what lets skill-aware runtimes load
+it by themselves. Every other tool reads it as three harmless lines of text, so
+the same file works everywhere.
+
+**Or install nothing.** Any agent that can open a URL:
+
+> Read
+> `https://github.com/liangliao1209/mistake-club-skill/blob/main/big-mistakes/SKILL.md`
+> and follow it for the plan I'm about to give you.
 
 ## What it does, exactly
 
@@ -89,30 +107,41 @@ sequenceDiagram
 itself; only those terms are sent. No account, no telemetry, nothing logged
 about who is asking.
 
-## API
+## Documentation
 
-```
-GET https://mistake.club/api/big-mistakes/search
-```
-
-| Parameter | What it does |
+| File | What is in it |
 |---|---|
-| `q` | free text; **repeat it** to ask several angles in one round trip |
-| `company` | e.g. `kodak`, `coca-cola`, `home depot` |
-| `category` | marketing · sales · finance · trading · strategy · product · engineering · tech · legal · people · research |
-| `decision` | strategic · marketing · financial · technical · operational · product · hiring · legal |
-| `detail=full` | adds `why[]` (root causes) and `sources[]`; returns fewer, deeper cases |
-| `limit` | max results (≤25 compact, ≤8 detailed) |
+| [`big-mistakes/SKILL.md`](big-mistakes/SKILL.md) | The instructions your agent follows — the five-step cross-check, the query grammar, the rules. |
+| [`big-mistakes/reference.md`](big-mistakes/reference.md) | The output template and a full worked example, including which cases were discarded and why. |
+| [`docs/api.md`](docs/api.md) | Complete API reference: every parameter, both response shapes, how ranking works, what each field means. |
+| [`docs/how-it-works.md`](docs/how-it-works.md) | Why it costs your agent almost nothing, how cases are verified before publication, and what the server never sees. |
 
-Multi-angle responses also carry `angles[]` (which angle found what) and
-`repeats` (where the returned cases share a category or decision type) — the
-raw material for the pattern paragraph.
-
-Try it:
+## The API in one line
 
 ```bash
 curl "https://mistake.club/api/big-mistakes/search?q=rebrand&limit=3"
 ```
+
+Repeat `q` to ask several angles at once, add `detail=full` for root causes and
+sources. Full reference in [`docs/api.md`](docs/api.md).
+
+## Troubleshooting
+
+**The agent never uses it.** Skill-aware runtimes decide from the `description`
+line in the YAML header. If yours is ignoring it, name it directly: *"use the
+big-mistakes skill on this plan."*
+
+**Nothing comes back.** Your angles may be too specific. Search the mechanism in
+plain words (`q=subscription pricing`) rather than the phrasing of your own
+document. An empty result is a real answer: no precedent in the archive.
+
+**It cited a case that doesn't fit.** Tell it so — the discard rule is in
+`SKILL.md` §4, and same-industry-different-mechanism is the failure mode it is
+written to prevent.
+
+**A number looks wrong.** Open the case URL; the sources are on the page. If the
+archive is wrong, [say so](https://mistake.club/rules) — corrections are the
+point of keeping sources visible.
 
 ## Browse the archive
 
