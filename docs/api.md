@@ -103,7 +103,7 @@ GET /api/big-mistakes/search?q=china+market+entry&q=big-box+retail&q=cultural+ri
 }
 ```
 
-- **`angles[]`** — which angle produced which cases. Use it to tell an exposure
+- **`angles[]`** — which angle produced which cases. Use it to tell a risk
   with precedent from one without.
 - **`cases[]`** — the deduplicated union, best matches first, each case once.
 - **`repeats`** — where the returned cases share a category or decision type.

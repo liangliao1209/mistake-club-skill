@@ -20,7 +20,7 @@ sequenceDiagram
     participant M as mistake.club
     U->>A: draft the market-entry proposal
     Note over A: reads SKILL.md once (~1.5K tokens)
-    Note over A: names 3 exposures in the plan
+    Note over A: names 3 risks in the plan
     A->>M: GET /search?q=…&q=…&q=…&detail=full
     M-->>A: 8 cases · root causes · sources (~2K tokens)
     Note over A: drops 5 as wrong-mechanism
