@@ -14,7 +14,9 @@ change.
 ### 1. <the exposure, in the plan's own words>
 **<Company> · <era> · <one line on what they did>**
 It cost them: <the `cost` field, verbatim>
-Why it failed: <the mechanism, from `why[]`, in your words — two sentences>
+The strand that applies: <the specific mechanism from `why[]` this plan is
+exposed to — not the case's famous story. When the industry differs, one
+sentence of bridge: "different industry, same joint: <the joint>.">
 **This plan:** <what the plan does differently — or, honestly, that it doesn't>
 Source: <url>
 

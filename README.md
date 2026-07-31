@@ -93,8 +93,11 @@ A five-step cross-check, not a search dump:
 3. **Ask once, multi-angle** — one round trip returns each angle's hits, the
    deduplicated union, root causes and sources; angles that came back as noise
    get sharpened and re-asked once.
-4. **Drop the near-misses.** Same industry is not a precedent; same
-   *mechanism* is. Two to four cases survive.
+4. **Read, don't just match.** A case is not its headline — its root causes
+   hold several strands, and the one that answers your plan is often not the
+   famous one. Each survivor is cited for a named strand, mapped to the
+   exposure it answers; cross-industry cases carry a one-sentence bridge.
+   Two to four precedent blocks survive.
 5. **Write each precedent into the plan** — what it cost, why it failed, what
    this plan does differently — and close with **what to change before this
    ships**: two or three one-line imperatives, each traceable to a precedent.

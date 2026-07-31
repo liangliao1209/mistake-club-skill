@@ -103,15 +103,38 @@ session.
 }
 ```
 
-### 4. Select — three precedents beat ten
+### 4. Read — the step that separates a consultant from a card catalogue
 
-Keep a case only if the **mechanism** matches, not merely the industry. A
-retail bankruptcy caused by a leveraged buyout is not a precedent for a retail
-format that misread demand. Ask of each: *would this failure have happened to
-this plan, for this reason?* If no, drop it.
+Selection is not keep-or-drop against a headline. **A case is not its
+headline**: `why[]` usually holds several distinct mechanisms, and the strand
+that speaks to this plan is often not the famous one. Kodak is filed as
+"buried its own invention" — but for a plan defending a high-margin legacy
+line, the applicable strand is the margin structure that made burying feel
+rational. Read `why[]` and `lesson`, and name **which strand answers which
+exposure**. Cite the case for the strand, not the fable.
 
-Two to four cases in the deliverable. If two cases say the same thing, keep the
-better documented one.
+Three reads, in order, for every returned case:
+
+- **Map it to an axis.** Which of the step-1 axes does this case actually
+  speak to — demand, unit economics, timing, integration, people, regulation,
+  channel, brand? A case that maps to none of your exposures is trivia,
+  however famous.
+- **Build the bridge when the industry differs.** Cross-industry is not a
+  weakness to apologise for; it is where the sharpest precedents live, because
+  the mechanism is visible without the industry's costume. But the bridge must
+  be said in one sentence — *different industry, same joint: a fixed-cost
+  commitment made before the demand signal existed* — or the reader dismisses
+  the case as someone else's problem.
+- **Let one exposure take two lenses.** When two cases illuminate the same
+  exposure from different dimensions — one shows the demand misread, the other
+  shows what the cost structure did when demand missed — keep both and say
+  what each contributes. That is a richer answer, not a longer list.
+
+Then drop everything else. Two to four **precedent blocks** in the
+deliverable — a block is one exposure plus the case or pair of cases read
+against it. If two cases say the same thing about the same exposure, keep the
+better documented one. Ask of every survivor: *would this failure have
+happened to this plan, for this reason?* If no, out.
 
 ### 5. Write it into the plan, not into an appendix
 
@@ -120,7 +143,9 @@ For each surviving precedent, one block:
 - **The exposure** — which decision in the plan this is about.
 - **Who already did it** — company, year, one line on what they did.
 - **What it cost** — the figure from `cost`, quoted, not rounded up.
-- **Why it failed** — from `why[]`, in your own words, the mechanism.
+- **The strand that applies** — from `why[]`, in your own words: the specific
+  mechanism this plan is exposed to, and — when the industry differs — the
+  one-sentence bridge that carries it across.
 - **What this plan does differently** — or, if it doesn't, say that plainly.
   This line is the whole point; without it the precedent is trivia.
 - **Source** — the `url`, so the reader can check you.
@@ -153,6 +178,10 @@ the first time you run a cross-check.
   open the `url` for any figure that will appear in a client deliverable.
 - **Nothing found ≠ nothing exists.** Say "no precedent in the archive for X",
   never "no one has failed at this".
+- **A case cited for its famous story is a near-miss in disguise.** The test
+  of a real read is that you can name the strand, the axis it maps to, and the
+  exposure it answers — in one line each. If you can only retell the story,
+  you have not read it yet.
 - **Angles too broad is the failure mode to expect.** If your hits read like
   a list of famous disasters rather than your plan's relatives, the archive is
   not empty — your nouns are. Sharpen once and re-ask.
