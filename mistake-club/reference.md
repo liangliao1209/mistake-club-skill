@@ -9,9 +9,9 @@ change.
 ## The template
 
 ```markdown
-## Precedent check — N exposures, M precedents
+## Precedent check — N risks, M precedents
 
-### 1. <the exposure, in the plan's own words>
+### 1. <the risk, in the plan's own words>
 **<Company> · <era> · <one line on what they did>**
 It cost them: <the `cost` field, verbatim>
 The strand that applies: <the specific mechanism from `why[]` this plan is
@@ -79,7 +79,7 @@ Industry adjacency is not a precedent.
 **The deliverable:**
 
 ```markdown
-## Precedent check — 3 exposures, 3 precedents
+## Precedent check — 3 risks, 3 precedents
 
 ### 1. The format assumes DIY demand that may not exist
 **The Home Depot · 2006–2012 · exported its US big-box DIY format to China**
@@ -117,7 +117,7 @@ All three failed at the same joint: a decision made where the head office
 understands the customer, executed where it doesn't. None of them failed on
 capital, logistics or product quality. The plan's risk register lists supply
 chain and capex; it does not list "our read of the customer is wrong", which is
-the exposure the archive keeps returning.
+the risk the archive keeps returning.
 
 ### Checked, nothing found
 No precedent in the archive for tier-1-city lease structures specifically. That

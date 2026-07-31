@@ -17,7 +17,7 @@ drafts gets cross-checked against the precedents, automatically.
 
 **You:** *draft a proposal for 12 big-box stores in tier-1 China.*
 
-Your agent names the plan's exposures, queries the archive from several angles,
+Your agent names the plan's risks, queries the archive from several angles,
 throws out the near-misses, and writes what survives **into the document**:
 
 > **1. The format assumes DIY demand that may not exist**
@@ -83,7 +83,7 @@ themselves; everything else reads it as three harmless lines of text.
 
 A five-step cross-check, not a search dump:
 
-1. **Name the exposures** — the bets the plan makes without saying so, walked
+1. **Name the risks** — the bets the plan makes without saying so, walked
    along eight axes: demand, unit economics, timing, integration, people,
    regulation, channel, brand.
 2. **Craft keyword angles** — the archive's engine matches words, not meaning,
@@ -96,7 +96,7 @@ A five-step cross-check, not a search dump:
 4. **Read, don't just match.** A case is not its headline — its root causes
    hold several strands, and the one that answers your plan is often not the
    famous one. Each survivor is cited for a named strand, mapped to the
-   exposure it answers; cross-industry cases carry a one-sentence bridge.
+   risk it answers; cross-industry cases carry a one-sentence bridge.
    Two to four precedent blocks survive.
 5. **Write each precedent into the plan** — what it cost, why it failed, what
    this plan does differently — and close with **what to change before this
@@ -117,7 +117,7 @@ instructions; retrieval happens server-side. 2,200 cases or 10,000 — same cost
 sequenceDiagram
     participant A as Your agent
     participant M as mistake.club
-    Note over A: drafting a plan — names its exposures
+    Note over A: drafting a plan — names its risks
     A->>M: GET /search?q=china+market+entry&q=big-box+retail&detail=full
     M-->>A: matching cases + root causes + sources
     Note over A: drops wrong-mechanism cases, writes 3 into the plan

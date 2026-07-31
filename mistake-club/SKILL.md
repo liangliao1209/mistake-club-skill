@@ -24,9 +24,9 @@ with no decision in it.
 
 ## The five steps
 
-### 1. Read the plan and name its exposures
+### 1. Read the plan and name its risks
 
-Not topics — **exposures**: the specific decisions that could go wrong. Write
+Not topics — **risks**: the specific decisions that could go wrong. Write
 them down before searching. A plan usually has three to six.
 
 Whatever the plan is — strategy, pricing, launch, acquisition, reorg — walk
@@ -35,14 +35,14 @@ these axes and keep the ones where the plan actually places a bet: **demand**
 **timing** (what has to happen first?), **integration** (what must fit together?),
 **people** (who must stay, and know what?), **regulation** (whose permission is
 assumed?), **channel** (who stands between this and the buyer?), **brand**
-(what promise is being spent?). An exposure is a bet the plan makes without
+(what promise is being spent?). A risk here is a bet the plan makes without
 saying so.
 
-> "Open 12 big-box stores in tier-1 China" → exposures: *format transplanted
+> "Open 12 big-box stores in tier-1 China" → risks: *format transplanted
 > into a different consumer culture*, *heavy fixed cost before demand is
 > proven*, *local competitors with lower cost structure*.
 
-### 2. Turn each exposure into two or three query angles
+### 2. Turn each risk into two or three query angles
 
 **The engine matches words, not meaning.** It is a keyword index over how
 each case is written up, and the archive holds 2,000+ cases — an abstract
@@ -83,7 +83,7 @@ operational product hiring legal`.
 
 The reply tells you which angle found what, the deduplicated union, and where
 cases repeat. **Read `angles[].found` as a diagnostic**: an angle whose hits
-share nothing with your exposure was too broad — and if the same giant cases
+share nothing with your risk was too broad — and if the same giant cases
 (the Evergrandes) appear under several angles, several were. Re-ask those
 angles once, sharper nouns, before selecting. One repair round, not a search
 session.
@@ -111,13 +111,13 @@ that speaks to this plan is often not the famous one. Kodak is filed as
 "buried its own invention" — but for a plan defending a high-margin legacy
 line, the applicable strand is the margin structure that made burying feel
 rational. Read `why[]` and `lesson`, and name **which strand answers which
-exposure**. Cite the case for the strand, not the fable.
+risk**. Cite the case for the strand, not the fable.
 
 Three reads, in order, for every returned case:
 
 - **Map it to an axis.** Which of the step-1 axes does this case actually
   speak to — demand, unit economics, timing, integration, people, regulation,
-  channel, brand? A case that maps to none of your exposures is trivia,
+  channel, brand? A case that maps to none of your risks is trivia,
   however famous.
 - **Build the bridge when the industry differs.** Cross-industry is not a
   weakness to apologise for; it is where the sharpest precedents live, because
@@ -125,14 +125,14 @@ Three reads, in order, for every returned case:
   be said in one sentence — *different industry, same joint: a fixed-cost
   commitment made before the demand signal existed* — or the reader dismisses
   the case as someone else's problem.
-- **Let one exposure take two lenses.** When two cases illuminate the same
-  exposure from different dimensions — one shows the demand misread, the other
+- **Let one risk take two lenses.** When two cases illuminate the same
+  risk from different dimensions — one shows the demand misread, the other
   shows what the cost structure did when demand missed — keep both and say
   what each contributes. That is a richer answer, not a longer list.
 
 Then drop everything else. Two to four **precedent blocks** in the
-deliverable — a block is one exposure plus the case or pair of cases read
-against it. If two cases say the same thing about the same exposure, keep the
+deliverable — a block is one risk plus the case or pair of cases read
+against it. If two cases say the same thing about the same risk, keep the
 better documented one. Ask of every survivor: *would this failure have
 happened to this plan, for this reason?* If no, out.
 
@@ -140,7 +140,7 @@ happened to this plan, for this reason?* If no, out.
 
 For each surviving precedent, one block:
 
-- **The exposure** — which decision in the plan this is about.
+- **The risk** — which decision in the plan this is about.
 - **Who already did it** — company, year, one line on what they did.
 - **What it cost** — the figure from `cost`, quoted, not rounded up.
 - **The strand that applies** — from `why[]`, in your own words: the specific
@@ -169,6 +169,13 @@ the first time you run a cross-check.
 
 ## Rules
 
+- **The reader never sees the machinery.** Field names, parameter names and
+  endpoint syntax — `why[]`, `repeats`, `angles`, `q=`, `detail=full` — are how
+  you talk to the archive, never how you talk to the human. In the deliverable
+  (and in any narration the human reads), translate them: "its root causes",
+  "the archive groups these under the same decision type", "I searched from
+  three angles". An answer that quotes its own plumbing reads like a printout,
+  not a consultant.
 - **Never invent a case, a number or a URL.** Everything you assert comes from
   a returned field. If you want to say something the archive does not support,
   attribute it to yourself, not to the archive.
