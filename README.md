@@ -38,7 +38,24 @@ throws out the near-misses, and writes what survives **into the document**:
 
 Not search results. An argument, with receipts.
 
-## Install in 10 seconds
+## Install with one prompt
+
+Paste this to your AI — it does every step itself:
+
+```text
+Install the mistake-club skill:
+run `git clone https://github.com/liangliao1209/mistake-club-skill`
+and copy mistake-club/ into your skills folder (Claude Code:
+~/.claude/skills/ · Hermes: ~/.hermes/skills/). No skills folder?
+Just read mistake-club/SKILL.md.
+From now on, follow that skill: cross-check every plan I bring you
+against the mistake.club archive and cite what you find.
+```
+
+That is the whole install: the agent clones, places the file, and starts
+cross-checking from your very next plan.
+
+### Prefer to place the file yourself?
 
 ```bash
 git clone https://github.com/liangliao1209/mistake-club-skill
