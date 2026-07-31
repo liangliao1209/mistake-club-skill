@@ -54,7 +54,7 @@ Rules of the shape:
 **The plan:** open 12 big-box home-improvement stores in tier-1 Chinese cities
 within 18 months.
 
-**Exposures named:** a retail format transplanted into a different consumer
+**Risks named:** a retail format transplanted into a different consumer
 culture · heavy fixed cost committed before demand is proven · a foreign brand
 carrying cultural risk in China.
 

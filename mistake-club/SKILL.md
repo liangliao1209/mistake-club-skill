@@ -187,7 +187,7 @@ the first time you run a cross-check.
   never "no one has failed at this".
 - **A case cited for its famous story is a near-miss in disguise.** The test
   of a real read is that you can name the strand, the axis it maps to, and the
-  exposure it answers — in one line each. If you can only retell the story,
+  risk it answers — in one line each. If you can only retell the story,
   you have not read it yet.
 - **Angles too broad is the failure mode to expect.** If your hits read like
   a list of famous disasters rather than your plan's relatives, the archive is
