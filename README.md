@@ -83,16 +83,21 @@ themselves; everything else reads it as three harmless lines of text.
 
 A five-step cross-check, not a search dump:
 
-1. **Name the exposures** — the specific decisions in your plan that could go
-   wrong, not the topics.
-2. **Turn each into query angles** — the mechanism in plain words, the format,
-   a comparable company, the decision type.
-3. **Ask once, multi-angle** — the archive returns matching cases with root
-   causes and sources.
+1. **Name the exposures** — the bets the plan makes without saying so, walked
+   along eight axes: demand, unit economics, timing, integration, people,
+   regulation, channel, brand.
+2. **Craft keyword angles** — the archive's engine matches words, not meaning,
+   so angles are built from the distinctive nouns of the failure's world
+   (`big-box`, `flash sale`, `franchise buyback`), never strategy-deck
+   vocabulary (`market entry` returns famous disasters, not relatives).
+3. **Ask once, multi-angle** — one round trip returns each angle's hits, the
+   deduplicated union, root causes and sources; angles that came back as noise
+   get sharpened and re-asked once.
 4. **Drop the near-misses.** Same industry is not a precedent; same
    *mechanism* is. Two to four cases survive.
-5. **Write each precedent into the plan** — what it cost, why it failed, and
-   the line that matters: *what your plan does differently.*
+5. **Write each precedent into the plan** — what it cost, why it failed, what
+   this plan does differently — and close with **what to change before this
+   ships**: two or three one-line imperatives, each traceable to a precedent.
 
 Then it names the pattern across the cases, and tells you which angles found
 nothing — because silence in an archive is not safety.

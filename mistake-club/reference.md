@@ -25,6 +25,11 @@ Source: <url>
 One paragraph: the mechanism these failures share, and what that implies for
 this plan. This is the analysis; everything above is the evidence.>
 
+### What to change before this ships
+<Two or three numbered imperatives, each traceable to a precedent above, each
+the smallest thing that makes this plan not that case. One sentence each.
+This list is what the reader came for; everything above is why to believe it.>
+
 ### Checked, nothing found
 <Angles that returned no case. One line: "the archive has no precedent for X —
 that is an absence of evidence, not evidence of safety.">

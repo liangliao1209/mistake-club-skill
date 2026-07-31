@@ -1,5 +1,13 @@
 # API reference
 
+> **The engine matches words, not meaning.** Relevance is a keyword score over
+> how each case is written up. Query with the distinctive nouns of the
+> failure's world — `q=DIY home improvement china` puts Home Depot's China
+> exit first; `q=china market entry` returns whatever big case shares a word.
+> Several narrow angles beat one broad one, and the multi-`q` form exists for
+> exactly that.
+
+
 Base URL: `https://mistake.club`
 Read-only. No account, no key, no rate limit worth worrying about.
 

@@ -29,11 +29,31 @@ with no decision in it.
 Not topics — **exposures**: the specific decisions that could go wrong. Write
 them down before searching. A plan usually has three to six.
 
+Whatever the plan is — strategy, pricing, launch, acquisition, reorg — walk
+these axes and keep the ones where the plan actually places a bet: **demand**
+(who says anyone wants this?), **unit economics** (what must be true per unit?),
+**timing** (what has to happen first?), **integration** (what must fit together?),
+**people** (who must stay, and know what?), **regulation** (whose permission is
+assumed?), **channel** (who stands between this and the buyer?), **brand**
+(what promise is being spent?). An exposure is a bet the plan makes without
+saying so.
+
 > "Open 12 big-box stores in tier-1 China" → exposures: *format transplanted
 > into a different consumer culture*, *heavy fixed cost before demand is
 > proven*, *local competitors with lower cost structure*.
 
 ### 2. Turn each exposure into two or three query angles
+
+**The engine matches words, not meaning.** It is a keyword index over how
+each case is written up, and the archive holds 2,000+ cases — an abstract
+phrase matches every big case that shares a word with it. Live example:
+`q=china market entry` returns Evergrande and a train crash; `q=DIY home
+improvement china` returns Home Depot's China exit first and second. So build
+angles from **distinctive nouns of the failure's world** — the format, the
+instrument, the channel, the customer behaviour — not from strategy-deck
+vocabulary. `big-box`, `flash sale`, `loyalty points`, `franchise buyback`
+find precedents; `market entry`, `growth strategy`, `transformation` find
+noise.
 
 Mix the vocabularies — the archive indexes companies, professions, decision
 types and plain description:
@@ -62,7 +82,11 @@ legal people research`. Decision types: `strategic marketing financial technical
 operational product hiring legal`.
 
 The reply tells you which angle found what, the deduplicated union, and where
-cases repeat:
+cases repeat. **Read `angles[].found` as a diagnostic**: an angle whose hits
+share nothing with your exposure was too broad — and if the same giant cases
+(the Evergrandes) appear under several angles, several were. Re-ask those
+angles once, sharper nouns, before selecting. One repair round, not a search
+session.
 
 ```json
 {
@@ -105,6 +129,13 @@ Then, if `repeats` shows the same decision type or category more than once,
 add one short paragraph naming the shared mechanism across those cases. That
 paragraph is the analysis; the cases are the evidence for it.
 
+Then close with **What to change before this ships** — two or three numbered
+imperatives, each traceable to a precedent above, each naming the smallest
+thing that would make this plan not that case: a pilot before the rollout, a
+kill date on the discount, a named owner for the integration. This list is
+what the reader came for; the precedents are why they should believe it. Keep
+each item to one sentence, and never list a change no precedent argues for.
+
 Finish with what you did **not** find: the angles that returned nothing.
 Silence in the archive is not safety — say so in those words.
 
@@ -122,6 +153,9 @@ the first time you run a cross-check.
   open the `url` for any figure that will appear in a client deliverable.
 - **Nothing found ≠ nothing exists.** Say "no precedent in the archive for X",
   never "no one has failed at this".
+- **Angles too broad is the failure mode to expect.** If your hits read like
+  a list of famous disasters rather than your plan's relatives, the archive is
+  not empty — your nouns are. Sharpen once and re-ask.
 - **Do not moralise.** These are decisions that looked rational at the time.
   Explain the mechanism; don't call anyone stupid.
 - **Read-only, and quiet.** The archive learns nothing about the human, the
