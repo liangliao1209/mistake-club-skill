@@ -11,7 +11,7 @@ document. In order.
 This is retrieval, not memorisation. **The archive never enters your agent's
 context.** What you install is a fixed page of instructions — a workflow, an
 API and an output contract — that stays the same size whether the archive holds
-250 cases or 5,000.
+5,000 cases or 10,000.
 
 ```mermaid
 sequenceDiagram
@@ -21,11 +21,13 @@ sequenceDiagram
     U->>A: draft the market-entry proposal
     Note over A: reads SKILL.md once (~1.5K tokens)
     Note over A: names 3 risks in the plan
-    A->>M: GET /search?q=…&q=…&q=…&detail=full
-    M-->>A: 8 cases · root causes · sources (~2K tokens)
-    Note over A: drops 5 as wrong-mechanism
+    A->>M: GET /api/archive/search?q=… (with your member token)
+    M-->>A: case summaries, scoped to your tier
+    A->>M: GET /api/archive/case/<id> for the survivors
+    M-->>A: 3 full cases · root causes · sources (~2K tokens)
+    Note over A: drops the wrong-mechanism cases
     A->>U: the plan, with 3 precedents written into it
-    Note over M: the other 250+ cases were never sent
+    Note over M: the other 6,200+ cases were never sent
 ```
 
 Per cross-check the agent pays for the skill file plus one response. Nothing
@@ -57,11 +59,13 @@ into a client deliverable — and every case page shows them.
 ## 3. Your document stays on your machine
 
 The agent reads your plan locally, works out what to search for, and sends only
-those search terms. The endpoint is a plain `GET` with a handful of words in the
-query string.
-
-There is no account, no API key, no cookie, and nothing logged that ties a
-search to a person, a company or a document.
+those search terms. The call is a plain `GET` with a handful of words in the
+query string, plus one header: your member token
+(`authorization: mc_skill_<token>`, no `Bearer`). The token tells the archive
+who you are and which tier you can see — registration is free — but the only
+content in the request is the search terms. Your document, your client's name
+and the numbers in your model are never transmitted, and a call without a
+valid token simply comes back `401`.
 
 If your agent ever offers to POST the plan itself somewhere, that is not this
 skill.
@@ -86,5 +90,5 @@ difference between a cross-check and a search-result dump.
 It says so, in those words: *"no precedent in the archive for X."*
 
 It is explicitly forbidden from turning silence into reassurance. An archive of
-250 documented failures is not a census of everything that has ever gone wrong,
-and the skill is written to keep that distinction visible to the reader.
+6,200+ documented failures is not a census of everything that has ever gone
+wrong, and the skill is written to keep that distinction visible to the reader.
