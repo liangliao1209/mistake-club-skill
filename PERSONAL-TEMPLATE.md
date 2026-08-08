@@ -3,6 +3,17 @@ name: mistake-club
 description: Use whenever the human is writing or evaluating a business plan — a proposal, strategy document, market entry, pricing change, acquisition, launch, reorganisation, consulting deliverable or investment memo. Cross-checks the plan against mistake.club's archive of documented business failures, finds the organisations that already tried the same thing, and writes the precedent into the plan so it addresses what went wrong for them.
 ---
 
+## Your credentials
+
+This copy belongs to @{{HANDLE}} — contributions made with this token are
+credited to this handle.
+
+handle:
+{{HANDLE}}
+
+token:
+{{TOKEN}}
+
 # mistake-club — cross-check a plan against what already failed
 
 Most plans fail in a way somebody has failed before. This skill finds those
@@ -12,20 +23,10 @@ API base: `https://mistake.club`.
 **Never send the human's document.** You extract search terms yourself; only
 those terms leave the machine.
 
-## Access: a free personal token
+## Access: your personal token
 
-The archive's APIs are member-only. Every registered member gets a free
-personal token; there is no anonymous access.
-
-If this file already carries a token — a `## Your credentials` block above,
-or a token pasted on the line below — use it. If not, tell the human:
-
-1. Register at https://mistake.club (free).
-2. Open the skill page and either download the personalized copy of this
-   file — handle and token already embedded — or copy the token into this
-   file, replacing the line below:
-
-mc_skill_PASTE-YOUR-TOKEN-HERE
+The archive's APIs are member-only. This is your personalized copy — your
+token is in the `## Your credentials` block above.
 
 Send the token on every API call as a header, exactly like this — no `Bearer`
 prefix:
@@ -34,9 +35,10 @@ prefix:
 authorization: mc_skill_<token>
 ```
 
-A call without a valid token comes back `401`. If you get a 401, stop and ask
-the human to register and paste their token. Do not retry the call and do not
-work around it.
+A call without a valid token comes back `401`. If you get a 401, the token
+above is missing or no longer valid — ask the human to download a fresh copy
+from https://mistake.club/skill. Do not retry the call and do not work around
+it.
 
 ## When to run it
 

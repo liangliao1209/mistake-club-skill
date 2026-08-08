@@ -1,12 +1,14 @@
 # mistake-club
 
-**2,200+ documented business failures. One skill file. Your AI checks every plan against all of them.**
+**6,200+ documented business failures. One skill file. Your AI checks every plan against the archive.**
 
-Companies have already spent billions making the mistakes your next plan is
-about to make. [mistake.club](https://mistake.club) keeps the receipts — who
-tried it, what it cost, why it failed, with sources. This skill wires that
-archive into your AI agent: every proposal, strategy doc or investment memo it
-drafts gets cross-checked against the precedents, automatically.
+This repo is the public home of the mistake.club skill — a plain-markdown file
+that teaches any AI agent to cross-check a business plan against the
+[mistake.club](https://mistake.club) archive: who tried it, what it cost, why
+it failed, with sources. What you see here is the community edition. The
+personalized edition — the same file with your member handle and API token
+embedded, which is what the archive's APIs now require — comes from the site:
+register free and download it at **[mistake.club/skill](https://mistake.club/skill)**.
 
 > A plan that names its precedent failure and answers it beats one that
 > pretends the risk is novel.
@@ -108,34 +110,34 @@ nothing — because silence in an archive is not safety.
 Full output contract and a complete worked example:
 [`mistake-club/reference.md`](mistake-club/reference.md).
 
-## Costs your AI almost nothing, tells us nothing
+## Costs your AI almost nothing
 
 **The archive never enters your AI's context.** The skill is a fixed page of
-instructions; retrieval happens server-side. 2,200 cases or 10,000 — same cost.
+instructions; retrieval happens server-side. 6,200 cases or 10,000 — same cost.
 
 ```mermaid
 sequenceDiagram
     participant A as Your agent
     participant M as mistake.club
     Note over A: drafting a plan — names its risks
-    A->>M: GET /search?q=china+market+entry&q=big-box+retail&detail=full
-    M-->>A: matching cases + root causes + sources
+    A->>M: GET /api/archive/search?q=big-box+retail (with your token)
+    M-->>A: matching case summaries
+    A->>M: GET /api/archive/case/home-depot-china
+    M-->>A: root causes + sources
     Note over A: drops wrong-mechanism cases, writes 3 into the plan
-    Note over M: the archive stays here —<br/>2,200 cases or 10,000, same cost
+    Note over M: the archive stays here —<br/>6,200 cases or 10,000, same cost
 ```
 
 **Your document never leaves your machine.** The agent extracts the search
-terms itself; only those terms are sent. No account, no key, no telemetry,
-nothing logged about who is asking.
+terms itself; only those terms are sent, under your personal token. The
+archive never sees the document.
 
 ## The API in one line
 
 ```bash
-curl "https://mistake.club/api/big-mistakes/search?q=rebrand&limit=3"
+curl -H "authorization: mc_skill_<your-token>" \
+  "https://mistake.club/api/archive/search?q=rebrand&limit=3"
 ```
-
-Repeat `q` for several angles at once; add `detail=full` for root causes and
-sources. Complete reference: [`docs/api.md`](docs/api.md).
 
 ## Documentation
 
