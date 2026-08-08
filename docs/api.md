@@ -1,54 +1,71 @@
 # API reference
 
-> **The engine matches words, not meaning.** Relevance is a keyword score over
-> how each case is written up. Query with the distinctive nouns of the
-> failure's world — `q=DIY home improvement china` puts Home Depot's China
-> exit first; `q=china market entry` returns whatever big case shares a word.
-> Several narrow angles beat one broad one, and the multi-`q` form exists for
-> exactly that.
-
+> **The engine matches words, not meaning.** Query with the distinctive nouns
+> of the failure's world — `q=DIY home improvement china` puts Home Depot's
+> China exit first; `q=china market entry` returns whatever big case shares a
+> word. Several narrow angles beat one broad one — one call per angle.
 
 Base URL: `https://mistake.club`
-Read-only. No account, no key, no rate limit worth worrying about.
 
-Everything the skill does goes through one endpoint. It is public, so you can
-call it by hand while you are figuring out what to ask.
+## Authentication
+
+Every endpoint requires a member token, sent as a header — no `Bearer` prefix:
+
+```
+authorization: mc_skill_<token>
+```
+
+Tokens are free: register at https://mistake.club, open the skill page, and
+download your personalized skill copy (handle and token embedded) or copy the
+token from there. A call without a valid token comes back **`401`** — that is
+the answer, not a retryable error.
+
+Your token also decides what you can see. Every member is on one of two tiers:
+
+- **core** — the 5,000-case core archive. Free, forever.
+- **full** — the entire archive, 6,000+ cases and growing. Opens at 50
+  approved community contributions.
+
+Search results and case fetches are scoped to your tier.
 
 ---
 
-## `GET /api/big-mistakes/search`
+## `GET /api/skill/status`
 
-Find documented failures that match one or more angles.
+The member's standing, in one call:
 
-### Parameters
+```json
+{
+  "tier": "core",
+  "coreTotal": 5000,
+  "fullTotal": 6200,
+  "approved": 31,
+  "pending": 4,
+  "unlockAt": 50,
+  "remaining": 19,
+  "message": "You're on the core tier — 5,000 cases. 19 more approved contributions unlock the full archive."
+}
+```
+
+- **`tier`** — `core` or `full`.
+- **`approved` / `pending`** — the member's reviewed and in-queue
+  contributions.
+- **`unlockAt` / `remaining`** — the full-archive threshold and how far away
+  it is.
+- **`message`** — a ready-to-relay English sentence about the member's
+  access. Skills built on this API end every run by passing it on to the
+  user, in the agent's own words.
+
+## `GET /api/archive/search`
+
+Find documented failures matching one angle. Repeat the call per angle.
 
 | Parameter | Type | Notes |
 |---|---|---|
-| `q` | string, **repeatable** | Free text. Repeat it to ask several angles in one round trip — the response then reports which angle found what. |
-| `company` | string | Substring match on the organisations involved: `kodak`, `coca-cola`, `home depot`. |
-| `category` | enum | The profession that owns the decision. One of `marketing` `sales` `finance` `trading` `strategy` `product` `engineering` `tech` `legal` `people` `research`. |
-| `decision` | enum | The kind of decision. One of `strategic` `marketing` `financial` `technical` `operational` `product` `hiring` `legal`. |
-| `detail` | `full` | Adds `oneLiner`, `why[]`, `tags[]`, `significance` and `sources[]`. Costs tokens, so it returns fewer cases. |
-| `limit` | integer | Max cases. Capped at 25 compact, 8 detailed. |
+| `q` | string | Free text. Use the distinctive nouns of the failure's world, not strategy-deck vocabulary. |
+| `limit` | integer | Max cases returned. |
 
-### How ranking works
-
-Matches are graded by **where** the query landed, not how often it appears:
-
-1. the organisation that made the mistake (`companies[0]`) — exact, then prefix
-2. another organisation named in the case
-3. the title
-4. the tags
-5. the body
-
-`significance` (1–100) only breaks ties inside a grade. So `?q=apple` returns
-Apple's own failures before cases where Apple is a bystander, and never
-matches "Snapple".
-
-Multi-word queries are scored token by token: a case that answers two words of
-`china market entry` outranks one that answers a single word.
-
-### Single-angle response
+The response is a list of case summaries, scoped to the caller's tier:
 
 ```json
 {
@@ -56,59 +73,47 @@ Multi-word queries are scored token by token: a case that answers two words of
     {
       "id": "home-depot-china",
       "title": "Home Depot shut all its big-box stores in China — DIY met a 'do-it-for-me' culture",
-      "companies": ["The Home Depot"],
-      "category": "sales",
-      "decisionType": "strategic",
+      "oneLiner": "In 2006 Home Depot bought a Chinese chain…",
       "era": "2006–2012",
-      "trigger": "a DIY format in a do-it-for-me market",
+      "category": "sales",
       "cost": "all big-box stores closed by 2012",
-      "lesson": "A format that works at home is a hypothesis abroad…",
-      "url": "https://mistake.club/w/home-depot-china"
+      "trigger": "a DIY format in a do-it-for-me market",
+      "significance": 62
     }
   ]
 }
 ```
 
-### Multi-angle response
+Summaries are for selecting, not for citing. An empty list means "no
+precedent in the archive you can see" — a core-tier search covers the core
+archive — never "no such failure exists".
 
-Ask three angles at once:
+## `GET /api/archive/case/<id>`
 
-```
-GET /api/big-mistakes/search?q=china+market+entry&q=big-box+retail&q=cultural+risk&detail=full
-```
+The full case, in the archive's entry schema:
 
 ```json
 {
-  "angles": [
-    { "q": "china market entry", "found": ["kfc-china-yum-spinoff", "..."] },
-    { "q": "big-box retail",     "found": ["home-depot-china", "..."] }
+  "id": "home-depot-china",
+  "title": "…",
+  "oneLiner": "…",
+  "summary": ["…", "…"],
+  "why": [
+    "Home Depot exported a do-it-yourself format into a market that was fundamentally 'do-it-for-me'…",
+    "It assumed a booming housing market meant demand for DIY retailing…"
   ],
-  "cases": [
-    {
-      "...": "every field above, plus:",
-      "oneLiner": "In 2006 Home Depot bought a Chinese chain…",
-      "why": [
-        "Home Depot exported a do-it-yourself format into a market that was fundamentally 'do-it-for-me'…",
-        "It assumed a booming housing market meant demand for DIY retailing…"
-      ],
-      "tags": ["retail", "china", "market-entry"],
-      "significance": 62,
-      "sources": ["https://en.wikipedia.org/wiki/The_Home_Depot"]
-    }
-  ],
-  "repeats": {
-    "byCategory": [{ "value": "strategy", "count": 6, "ids": ["…"] }],
-    "byDecision": [{ "value": "strategic", "count": 8, "ids": ["…"] }]
-  }
+  "cost": "all big-box stores closed by 2012",
+  "trigger": "a DIY format in a do-it-for-me market",
+  "lesson": "A format that works at home is a hypothesis abroad…",
+  "sources": [{ "title": "…", "url": "https://…" }],
+  "era": "2006–2012",
+  "category": "sales",
+  "significance": 62
 }
 ```
 
-- **`angles[]`** — which angle produced which cases. Use it to tell a risk
-  with precedent from one without.
-- **`cases[]`** — the deduplicated union, best matches first, each case once.
-- **`repeats`** — where the returned cases share a category or decision type.
-  This is a mechanical count, not an insight: it tells you *that* something
-  repeats. Deciding what the repetition means is your job.
+A case outside the caller's tier answers **`403 {"error":"full_archive_only"}`**.
+Leave it out of the deliverable; never argue from its summary alone.
 
 ### Field meanings
 
@@ -122,34 +127,49 @@ GET /api/big-mistakes/search?q=china+market+entry&q=big-box+retail&q=cultural+ri
 | `era` | The year or span. Quote it verbatim. |
 | `sources[]` | Where the facts came from. Open them before a number goes into a deliverable. |
 
-### Errors
+---
 
-There is no error envelope. An unknown `category` or `decision` simply matches
-nothing, and you get `{"cases": []}`. Treat an empty result as "no precedent in
-the archive", never as "no such failure exists".
+## Contributing
+
+Members on the way to 50 approved cases use two more endpoints. Contributing
+is a dedicated session's work, never mixed into a cross-check.
+
+### `GET /api/contribute/slots`
+
+The assignment slots: the market × industry gaps the archive most needs
+filled. Work a slot rather than freelancing duplicates of famous cases.
+
+### `POST /api/contribute/submit`
+
+```json
+{ "entries": [ { "id": "…", "title": "…", "summary": ["…"], "why": ["…"], "cost": "…", "trigger": "…", "lesson": "…", "sources": [{ "title": "…", "url": "https://…" }] } ] }
+```
+
+Entries follow the same schema the case endpoint returns. Submissions land in
+a human-reviewed queue, never straight into the archive. Approved cases go
+live credited `community:@<your handle>`; rejected ones come back with a note
+saying why and what to fix. `/api/skill/status` tracks the count.
 
 ---
 
 ## Trying it by hand
 
 ```bash
-# the biggest documented failures, no query
-curl "https://mistake.club/api/big-mistakes/search?limit=5"
+# your standing
+curl -H "authorization: mc_skill_<token>" \
+  "https://mistake.club/api/skill/status"
 
-# one company
-curl "https://mistake.club/api/big-mistakes/search?company=kodak"
+# one angle
+curl -H "authorization: mc_skill_<token>" \
+  "https://mistake.club/api/archive/search?q=subscription+pricing&limit=8"
 
-# a profession, deepest cases first
-curl "https://mistake.club/api/big-mistakes/search?category=finance&limit=10"
-
-# a real cross-check: three angles, root causes included
-curl "https://mistake.club/api/big-mistakes/search\
-?q=subscription+pricing&q=customer+churn&detail=full"
+# the full case behind a summary
+curl -H "authorization: mc_skill_<token>" \
+  "https://mistake.club/api/archive/case/home-depot-china"
 ```
 
 ## What the server never sees
 
-The agent extracts the angles from your document locally and sends only those
-words. The document itself, the client's name, the numbers in your model — none
-of it is transmitted. There is no account, no cookie and no logging tied to who
-is asking.
+The agent extracts the search terms from your document locally and sends only
+those words, under your token. The document itself, the client's name, the
+numbers in your model — none of it is transmitted.

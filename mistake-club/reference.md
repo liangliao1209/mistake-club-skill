@@ -18,12 +18,12 @@ The strand that applies: <the specific mechanism from `why[]` this plan is
 exposed to — not the case's famous story. When the industry differs, one
 sentence of bridge: "different industry, same joint: <the joint>.">
 **This plan:** <what the plan does differently — or, honestly, that it doesn't>
-Source: <url>
+Source: <the case's `sources` — the reader must be able to check you>
 
 ### 2. …
 
 ### The pattern
-<Only when `repeats` shows the same decision type or category twice or more.
+<Only when several fetched cases share a decision type or category.
 One paragraph: the mechanism these failures share, and what that implies for
 this plan. This is the analysis; everything above is the evidence.>
 
@@ -58,17 +58,23 @@ within 18 months.
 culture · heavy fixed cost committed before demand is proven · a foreign brand
 carrying cultural risk in China.
 
-**The call:**
+**The calls** (each with the `authorization: mc_skill_<token>` header):
 
 ```
-GET /api/big-mistakes/search
-  ?q=china+market+entry&q=big-box+retail&q=store+openings+fixed+cost
-  &detail=full
+GET /api/archive/search?q=big-box+retail&limit=8
+GET /api/archive/search?q=DIY+home+improvement+china&limit=8
+GET /api/archive/search?q=store+openings+fixed+cost&limit=8
+```
+
+then, for each summary that survived:
+
+```
+GET /api/archive/case/<id>
 ```
 
 **What came back** (abridged): `home-depot-china`, `uniqlo-us-struggles`,
 `dolce-gabbana-china-chopsticks`, `kfc-china-yum-spinoff`, `toshiba-nuclear-bet`,
-`lotte-china-thaad`, plus `repeats.byDecision: strategic ×8`.
+`lotte-china-thaad` — six fetched in full, all strategic decisions.
 
 **What was dropped and why:** `toshiba-nuclear-bet` (same *kind* of bet — big
 capital commitment on a forecast — but the mechanism is an energy-policy
@@ -90,7 +96,7 @@ work in the US were the aisles nobody in China needed.
 **This plan:** assumes the same DIY behaviour in section 2 and cites no local
 demand data. Before signing 12 leases, validate with one leased pilot store and
 a survey of renovation spend; move the remaining 11 behind that gate.
-Source: https://mistake.club/w/home-depot-china
+Source: the sources on archive case `home-depot-china`
 
 ### 2. A brand that travels well at home may not travel here
 **Fast Retailing (Uniqlo) · 2019 · 60 US stores in a decade**
@@ -100,7 +106,7 @@ logo-free — read as anonymous to American shoppers who buy brand signals. The
 product was right; the meaning of the product was not.
 **This plan:** treats brand recognition as portable. Budget for local brand
 building rather than assuming the name arrives ahead of the stores.
-Source: https://mistake.club/w/uniqlo-us-struggles
+Source: the sources on archive case `uniqlo-us-struggles`
 
 ### 3. Cultural risk in China is a business risk, not a PR footnote
 **Dolce & Gabbana · 2018 · an ad campaign built on a national stereotype**
@@ -110,7 +116,7 @@ Why it failed: the campaign was signed off by people with no authority to say
 largest growth market in days.
 **This plan:** has no local sign-off step for marketing. Give a China-based
 reviewer veto over campaign creative before it runs.
-Source: https://mistake.club/w/dolce-gabbana-china-chopsticks
+Source: the sources on archive case `dolce-gabbana-china-chopsticks`
 
 ### The pattern
 All three failed at the same joint: a decision made where the head office

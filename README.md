@@ -29,7 +29,7 @@ throws out the near-misses, and writes what survives **into the document**:
 > in a market where hiring a decorator is the norm.
 > **This plan** assumes the same DIY behaviour and cites no local demand data.
 > Validate with one pilot store before signing 12 leases.
-> Source: https://mistake.club/w/home-depot-china
+> Source: the sources on archive case `home-depot-china`
 >
 > *…two more precedents, then:*
 >
